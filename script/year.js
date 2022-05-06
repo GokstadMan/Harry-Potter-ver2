@@ -40,33 +40,23 @@ function addBackgroundColorToStudent(student, el) {
   }
 }
 
-function searchStudent() {
-  const searchBar = document.querySelector('#searchbar');
+//SearchBar
 
-  const searchValue = searchBar.value.toLowerCase();
+const searchBar = document.getElementById("search-bar");
+let studentList = document.getElementById("student-list");
 
-  studentArray.filter((student) => {
-    if (student.name.toLowerCase().includes(searchValue)) {
-      studentContainer.innerHTML = '';
-      studentContainer.innerHTML += `
-        <div class='student-card'>
-          <p>${student.name}</p>
-          <img class='student-img' alt='${!student.image ? 'Missing image avatar' : student.name + ' image'}' src=${!student.image ? "./assets/avatar.png" : student.image} />
-          <p>${student.house}</p>
-          <p>Alder: ${2022 - student.yearOfBirth}</p>
-          <p>I live: ${student.alive ? 'Ja' : 'Nei'}</p>
-        </div>
-      `;
-
-      const card = document.querySelector('.student-card');
-      addBackgroundColorToStudent(student, card);
-      searchBar.value = '';
-    }
-  });
-}
-
-
-searchBtn.addEventListener('click', searchStudent);
+searchBar.addEventListener("keyup", function (e) {
+  let searchString = e.target.value.toLowerCase();
+  let filteredCharacters = slytherinArray
+    .concat(gryffindorArray, ravenclawArray, hufflepuffArray)
+    .filter(function (students) {
+      return students.name.toLowerCase().includes(searchString);
+    });
+  showStudents(filteredCharacters);
+  if (searchBar.value === "") {
+    studentList.innerHTML = "";
+  }
+});
 
 let houseOfSlytherin = document.getElementById("slytherinImg");
 houseOfSlytherin.addEventListener("click", function() {
@@ -161,12 +151,12 @@ function showStudents(hogwartsHouse) {
   }
 }
 
-function renderData(hogwartsHouse) {
-  houseMembers = studentArray.filter(function(data) {
+/*function renderData(hogwartsHouse) {
+  houseMembers = studentArray.filter(function (data) {
     return data.house == hogwartsHouse;
   });
   showStudents(houseMembers);
-}
+}*/
 
 
 let createStudent = document.querySelector(".save-btn");
@@ -214,6 +204,6 @@ createStudent.addEventListener("click", () => {
       yearOfBirth: studentAge,
     });
   }
-  renderData(studentHouse);
+//  renderData(studentHouse);
 });
 fetchStudents();
