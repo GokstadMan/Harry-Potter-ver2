@@ -193,7 +193,7 @@ createStudent.addEventListener("click", () => {
       name: studentName,
       image: imgSrc,
       house: studentHouse,
-      yearOfBirth: yearOfBirth,
+      yearOfBirth: studentAge,
     });
   }
   if (studentHouse == "Hufflepuff") {
