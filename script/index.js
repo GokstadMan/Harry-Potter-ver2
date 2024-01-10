@@ -1,1 +1,1 @@
-export const API = "http://hp-api.herokuapp.com/api/characters";
+export const API = "https://hp-api.onrender.com/api/characters";
