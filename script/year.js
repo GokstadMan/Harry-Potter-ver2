@@ -7,7 +7,7 @@ let studentContainer = document.getElementById("show-content");
 const searchBtn = document.getElementById('search-btn');
 
 async function fetchStudents() {
-  let response = await fetch("http://hp-api.onrender.com/api/characters"); // or API as defined
+  let response = await fetch("https://hp-api.onrender.com/api/characters"); // or API as defined
   let data = await response.json();
   studentArray.push(...data);
 
